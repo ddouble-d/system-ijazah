@@ -10,20 +10,22 @@ class Pengajuan extends CI_Controller {
 		// $this->load->library('form_validation', 'Pdf');
 		// $this->load->helper(array('form', 'url'));
 		// is_admin();
-		// is_loggedin();
+		is_loggedin();
 	}
 
 	public function index()
 	{
 		$data['info'] = $this->db->get_where('tb_user',['email'=>$this->session->userdata('email')])->row_array();
-		// $data['userdata'] = $this->db->get_where('tb_pengajuan',['uid' => $this->session->userdata('uid')])->result_array();
     $data['active1'] = "";
 		$data['active2'] = "";
 		$data['active3'] = "nav-item active";
-		// $data['userdata'] = $this->m_pengajuan->getAllPengajuan();
+		if($this->session->userdata('level') == "Admin"){
+			$data['userdata'] = $this->m_pengajuan->getAllPengajuan();
+		} else {
 		$data['cek'] = $this->m_pengajuan->cekPengajuan();
 		$data['userdata'] = $this->m_pengajuan->getMyPengajuan();
 		$data['cekstatus'] = $this->m_pengajuan->cekStatusPengajuan();
+		}
 		$data['autoId'] = $this->m_pengajuan->autoId();
 		// $data['autoid'] 	= $this->m_gejala->autoNumber();
 		$this->load->view('template/v_header',$data);
@@ -33,8 +35,20 @@ class Pengajuan extends CI_Controller {
 
 	public function tambah(){
 		date_default_timezone_set("Asia/Jakarta");
-		$data = [
-		 	  'uid' => $this->session->userdata('uid'),
+		$this->load->library('upload');
+			if(isset($_FILES['scan_ijazah']['name']))
+			{
+			$config['upload_path']    = './upload/scan_ijazah/';
+			$config['allowed_types']  = 'pdf';
+			$config['overwrite']			= true;
+			$config['max_size']       = 5120; // 5MB
+			$this->upload->initialize($config);
+			$this->upload->do_upload('scan_ijazah');
+			$namafile = $this->upload->data('file_name');
+			}
+			$data = [
+				'uid' => $this->session->userdata('uid'),
+				'scan_ijazah' => $namafile,
 				'log_pengajuan' => date('Y-m-d H:i:s'),
 				'status' => "Belum Diproses"
 			];
@@ -42,7 +56,8 @@ class Pengajuan extends CI_Controller {
   	// $this->session->set_flashdata('flash', 'Diubah');
   	redirect('Pengajuan');
 	}
-  // //
+
+
 	// public function edit(){
 	// 	$uid = $this->input->post('uid');
 	// 	$data = [
@@ -75,13 +90,12 @@ class Pengajuan extends CI_Controller {
   }
 
 	private function uploadIjazah(){
-		$config['upload_path']          = './upload/scan ijazah/';
-    $config['allowed_types']        = 'pdf';
-    $config['file_name']            = 'tes';
+		$config['upload_path']    = './upload/scan_ijazah/';
+    $config['allowed_types']  = 'pdf';
+    $config['encrypt_name']   = true;
     $config['overwrite']			= true;
-    $config['max_size']             = 5120; // 5MB
-
+    $config['max_size']       = 5120; // 5MB
     $this->load->library('upload', $config);
-    return $this->upload->data("file_name");
-}
+	}
+
 }

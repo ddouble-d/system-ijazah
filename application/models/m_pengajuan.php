@@ -21,10 +21,7 @@ class m_pengajuan extends CI_model
 		->from('tb_pengajuan p')
 		->join('tb_user u', 'u.uid = p.uid')
 		->where(['p.uid' => $this->session->userdata('uid')])
-		->order_by('id_pengajuan', 'DESC')
-		->get()
-		->result_array();
-		var_dump($tes);
+		->get()->result_array();
 		return $tes;
 	}
 
@@ -33,7 +30,7 @@ class m_pengajuan extends CI_model
 		->from('tb_pengajuan p')
 		->join('tb_user u', 'u.uid = p.uid')
 		->where(['p.uid' => $this->session->userdata('uid')])
-		->where('status', 'Sudah Dikirim')
+		->where('status', 'Belum Diproses')
 		->get()->result_array();
 		return $tes;
 	}

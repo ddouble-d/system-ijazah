@@ -58,6 +58,7 @@
   <script type="text/javascript">
   $(document).ready(function(){
     $('.data').DataTable({
+      "order": [[ 0, "desc" ]]
       // language: {
       //   sProcessing: 'Sedang Proses...',
       //   sLengthMenu: "Tampilan _MENU_ entri",

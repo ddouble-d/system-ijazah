@@ -11,15 +11,15 @@
       <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary" style="margin-bottom:10px;">
         Tambah
       </button>
-    <?php } elseif ($cekstatus) {?>
-      <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary" style="margin-bottom:10px;">
-        Tambah
-      </button>
-    <?php } else {?>
+    <?php } if ($cekstatus) {?>
       <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary" style="margin-bottom:10px;" disabled>
         Tambah
       </button>
       <p class="text-danger">*Untuk mengajukan lagi, pengajuan sebelumnya harus diproses dahulu</p>
+    <?php } else {?>
+      <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary" style="margin-bottom:10px;">
+        Tambah
+      </button>
     <?php }
   } ?>
       <div class="table-responsive">
@@ -28,7 +28,7 @@
             <th>No.Pengajuan</th>
             <th>NISN</th>
             <th>Nama</th>
-            <th>Alamat</th>
+            <th>Scan</th>
             <th>Tanggal Pengajuan</th>
             <th>No. Resi</th>
             <th>Keterangan</th>
@@ -43,7 +43,8 @@
               <td><?= $data['id_pengajuan'] ?></td>
               <td><?= $data['nisn'] ?></td>
               <td><?= $data['nama'] ?></td>
-              <td><?= $data['alamat'] ?></td>
+              <td><a href=<?php echo '"'.base_url('upload/scan_ijazah/'.$data['scan_ijazah']).'"';?>>
+                <img width="50" height="50" src="<?php echo base_url ('assets/startbootstrap-sb-admin-2-gh-pages/img/pdf.png') ?>" alt=""></a></td>
               <td><?= $data['log_pengajuan'] ?></td>
               <td><?= $data['no_resi'] ?></td>
               <td><?= $data['keterangan'] ?></td>
@@ -95,10 +96,10 @@
             <input class="form-control" id="alamat" name="alamat" type="text" required="" value="<?=$data['alamat']?>"
             readonly></input>
           </div>
-          <!-- <div class="form-group mb-3">
+          <div class="form-group mb-3">
             <label class="col-form-label">Scan Ijazah</label>
             <input class="form-control-file" id="scan_ijazah" name="scan_ijazah" type="file" required="">
-          </div> -->
+          </div>
         </div>
 
         <div class="modal-footer">

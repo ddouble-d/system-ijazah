@@ -37,7 +37,7 @@ class Front extends CI_Controller {
         }
         else
         {
-          redirect('Userdata');
+          redirect('Pengajuan');
         }
       }
       else
