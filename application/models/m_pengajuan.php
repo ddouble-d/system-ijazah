@@ -25,6 +25,25 @@ class m_pengajuan extends CI_model
 		return $tes;
 	}
 
+	public function sendWhatsapp($no_hp, $resi){
+		$data = [
+    'phone' => $no_hp, // Receivers phone
+    'body' => "Fotocopy Legalisir Ijazah anda sudah dikirimkan dengan no.resi ".$resi." menggunakan kurir J&T", // Message
+		];
+		$json = json_encode($data); // Encode data to JSON
+		// URL for request POST /message
+		$url = 'https://eu2.chat-api.com/instance125370/sendMessage?token=hzrzgps8ffcbjbcd';
+		// Make a POST request
+		$options = stream_context_create(['http' => [
+		        'method'  => 'POST',
+		        'header'  => 'Content-type: application/json',
+		        'content' => $json
+		    ]
+		]);
+		// Send a request
+		$result = file_get_contents($url, false, $options);
+	}
+
 	public function cekStatusPengajuan(){
 		$tes = $this->db->select('p.*,u.*')
 		->from('tb_pengajuan p')
