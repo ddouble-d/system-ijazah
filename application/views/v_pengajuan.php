@@ -50,11 +50,17 @@
               <td><?= $data['keterangan'] ?></td>
               <td><?= $data['status'] ?></td>
               <?php if($info['level'] == "Admin") { ?>
-              <td>
+                <td>
+                <?php if($data['status'] == "Sudah Dikirim"){?>
+                <button type="button" data-toggle="modal" data-target="#edit-data<?=$data['id_pengajuan']?>" class="btn btn-warning btn-fill btn-sm" disabled>
+                  Proses
+                </button>
+            <?php } if($data['status'] == "Belum Diproses") { ?>
                 <span data-toggle="modal" data-target="#edit-data<?=$data['id_pengajuan']?>" class="btn btn-warning btn-fill btn-sm">
                   Proses
                 </span>
-              </td>
+            <?php } ?>
+            </td>
             <?php } ?>
             </tr>
             <?php endforeach ?>
@@ -127,6 +133,7 @@
 
         <form action="<?=base_url('pengajuan/prosesStatus')?>" method="post" enctype="multipart/form-data" role="form">
           <div class="modal-body">
+            <input type="hidden" id="no_hp" name="no_hp" value="<?=$data['no_hp']?>">
             <div class="form-group mb-3">
               <label class="col-form-label">No. Pengajuan</label>
               <input class="form-control" id="id_pengajuan" name="id_pengajuan" type="text" required="" value="<?=$data['id_pengajuan']?>"
@@ -140,6 +147,11 @@
             <div class="form-group mb-3">
               <label class="col-form-label">Nama</label>
               <input class="form-control" id="nama" name="nama" type="text" required="" value="<?=$data['nama']?>"
+              readonly></input>
+            </div>
+            <div class="form-group mb-3">
+              <label class="col-form-label">No. HP</label>
+              <input class="form-control" id="no_hp" name="no_hp" type="text" required="" value="<?=$data['no_hp']?>"
               readonly></input>
             </div>
             <div class="form-group mb-3">
