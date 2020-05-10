@@ -6,9 +6,11 @@
       <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
     </div>
     <div class="card-body">
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+    <div class="flash-gagal" data-flashgagal="<?= $this->session->flashdata('gagal') ?>"></div>
       <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn btn-primary" style="margin-bottom:10px;">
         Tambah
-      </button>
+      </button> 
       <div class="table-responsive">
         <table class="table table-bordered data" width="100%" cellspacing="0">
           <thead>
@@ -54,7 +56,7 @@
 </div>
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+<div class="modal fade" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -83,6 +85,12 @@
             <label class="col-form-label">E-mail</label>
             <input class="form-control" name="email" placeholder="Masukkan E-mail" type="email" required=""
             oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')"
+            oninput="setCustomValidity('')"></input>
+          </div>
+          <div class="form-group mb-3">
+            <label class="col-form-label">No. HP</label>
+            <input class="form-control" name="no_hp" placeholder="Masukkan No. HP" type="text" required=""
+            oninvalid="this.setCustomValidity('No. HP Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
           </div>
           <div class="form-group mb-3">
@@ -150,6 +158,12 @@
               oninvalid="this.setCustomValidity('Nama Belum Terisi!')"
               oninput="setCustomValidity('')"></input>
             </div>
+            <div class="form-group mb-3">
+            <label class="col-form-label">No. HP</label>
+            <input class="form-control" name="no_hp" placeholder="Masukkan No. HP" type="text" value="<?=$data['no_hp']?>" required=""
+            oninvalid="this.setCustomValidity('No. HP Belum Terisi!')"
+            oninput="setCustomValidity('')"></input>
+          </div>
             <div class="form-group mb-3">
               <label class="col-form-label">Tahun Lulus</label>
               <input class="form-control" id="tahun_lulus" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" type="text" value="<?=$data['nisn']?>" required=""

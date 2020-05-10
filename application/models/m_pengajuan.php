@@ -28,7 +28,8 @@ class m_pengajuan extends CI_model
 	public function sendWhatsapp($no_hp, $resi){
 		$data = [
     'phone' => $no_hp, // Receivers phone
-    'body' => "Fotocopy Legalisir Ijazah anda sudah dikirimkan dengan no.resi ".$resi." menggunakan kurir J&T", // Message
+	'body' => "Fotocopy Legalisir Ijazah anda sudah dikirimkan dengan no.resi ".$resi." menggunakan kurir J&T. 
+	Silakan mengunjungi situs http://jet.co.id untuk tracking pengiriman", // Message
 		];
 		$json = json_encode($data); // Encode data to JSON
 		// URL for request POST /message

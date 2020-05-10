@@ -33,13 +33,17 @@ class Pengajuan extends CI_Controller {
 
 	public function tambah(){
 		date_default_timezone_set("Asia/Jakarta");
+		$nisn = $this->input->post('nisn');
+		$nama = $this->input->post('nama');
+		$tanggal = date('Y-m-d H:i:s');
 		$this->load->library('upload');
 			if(isset($_FILES['scan_ijazah']['name']))
-			{
-			$config['upload_path']    = './upload/scan_ijazah/';
-			$config['allowed_types']  = 'pdf';
-			$config['overwrite']			= true;
-			$config['max_size']       = 5120; // 5MB
+			{ 
+			$config['upload_path']    	= './upload/scan_ijazah/';
+			$config['allowed_types']  	= 'pdf';
+			$config['overwrite']		= true;
+			$config['max_size']       	= 5120; // 5MB
+			$config['file_name']		= $tanggal.'_'.$nisn.''.$nama;
 			$this->upload->initialize($config);
 			$this->upload->do_upload('scan_ijazah');
 			$namafile = $this->upload->data('file_name');
@@ -47,7 +51,7 @@ class Pengajuan extends CI_Controller {
 			$data = [
 				'uid' => $this->session->userdata('uid'),
 				'scan_ijazah' => $namafile,
-				'log_pengajuan' => date('Y-m-d H:i:s'),
+				'log_pengajuan' => $tanggal,
 				'status' => "Belum Diproses"
 			];
   	$this->m_pengajuan->savePengajuan($data);
@@ -113,21 +117,12 @@ class Pengajuan extends CI_Controller {
 				'keterangan' => $this->input->post('keterangan',true),
 				'status' => "Sudah Dikirim"
 			];
-  	$this->m_pengajuan->updateStatus($id_pengajuan,$data);
+  		$this->m_pengajuan->updateStatus($id_pengajuan,$data);
 		$no_hp = $this->input->post('no_hp');
 		$resi = $this->input->post('no_resi');
 		$this->m_pengajuan->sendWhatsapp($no_hp, $resi);
   	// $this->session->set_flashdata('flash', 'Diubah');
   	redirect('Pengajuan');
   }
-
-	private function uploadIjazah(){
-		$config['upload_path']    = './upload/scan_ijazah/';
-    $config['allowed_types']  = 'pdf';
-    $config['encrypt_name']   = true;
-    $config['overwrite']			= true;
-    $config['max_size']       = 5120; // 5MB
-    $this->load->library('upload', $config);
-	}
 
 }
