@@ -48,37 +48,37 @@
       <!-- Nav Item - Dashboard -->
       <?php $info = $this->db->get_where('tb_user',['email'=>$this->session->userdata('email')])->row_array(); ?>
       <?php if($info['level'] == "Admin") { ?>
-      <li class="nav-item active">
+      <li class="nav-item " id="navDashboard">
         <a class="nav-link" href="<?=base_url()?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-
+ 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Nav Item  -->
-      <li class="nav-item">
+      <li class="nav-item " id="navUserData">
         <a class="nav-link" href="<?=base_url()?>Userdata">
           <i class="fas fa-fw fa-user"></i>
           <span>User Data</span></a>
       </li>
     <?php } ?>
-      <li class="nav-item">
+      <li class="nav-item " id="navPengajuan">
         <a class="nav-link" href="<?=base_url()?>Pengajuan">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pengajuan</span></a>
       </li>
 <!-- < ?php } ?> -->
-      <li class="nav-item">
+      <li class="nav-item " id="navProfil">
         <a class="nav-link" href="<?=base_url()?>Profil">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Profil</span></a>
       </li>
-
+ 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-
+ 
       <!-- Logout -->
       <li class="nav-item">
         <a class="nav-link" href="<?=base_url()?>Profil/Logout">

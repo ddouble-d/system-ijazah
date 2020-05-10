@@ -179,3 +179,8 @@
 </div>
   <!-- End of Modal Update -->
 <?php endforeach; ?>
+
+<script> 
+navPengajuan = document.getElementById('navPengajuan');
+navPengajuan.classList.add('active');
+</script>

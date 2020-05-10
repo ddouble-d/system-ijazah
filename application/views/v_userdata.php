@@ -180,3 +180,7 @@
   </div>
   <!-- End of Modal Update -->
 <?php endforeach; ?>
+<script> 
+navUserData = document.getElementById('navUserData');
+navUserData.classList.add('active');
+</script>

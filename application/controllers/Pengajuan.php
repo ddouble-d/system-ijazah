@@ -17,9 +17,6 @@ class Pengajuan extends CI_Controller {
 	public function index()
 	{
 		$data['info'] = $this->db->get_where('tb_user',['email'=>$this->session->userdata('email')])->row_array();
-    $data['active1'] = "";
-		$data['active2'] = "";
-		$data['active3'] = "nav-item active";
 		if($this->session->userdata('level') == "Admin"){
 			$data['userdata'] = $this->m_pengajuan->getAllPengajuan();
 		} else {

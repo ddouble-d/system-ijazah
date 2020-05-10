@@ -133,3 +133,7 @@ function validatePassword(){
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script> -->
+<script> 
+navProfil = document.getElementById('navProfil');
+navProfil.classList.add('active');
+</script>

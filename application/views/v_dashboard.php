@@ -9,3 +9,7 @@
 
       </div>
       <!-- End of Main Content -->
+<script> 
+navDashboard = document.getElementById('navDashboard');
+navDashboard.classList.add('active');
+</script>
