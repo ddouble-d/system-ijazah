@@ -38,14 +38,14 @@ class Userdata extends CI_Controller {
 				'level' => $this->input->post('level',true)
 			];
 			$this->m_userdata->saveUserdata($data);
-			// $this->session->set_flashdata('flash', 'Ditambahkan');
+			$this->session->set_flashdata('flash', 'Ditambahkan');
 			redirect('Userdata');
 		} else {		
 			$this->session->set_flashdata('gagal', 'Gagal');
 			redirect('Userdata');			
 		}				
 	}
-  //
+  
 	public function edit(){
 		$uid = $this->input->post('uid');
 		$data = [
@@ -61,6 +61,41 @@ class Userdata extends CI_Controller {
 		$this->m_userdata->deleteUserdata($uid);
 		// $this->session->set_flashdata('flash', 'Dihapus');
 		redirect('Userdata');
+	}
+
+	public function cekNisn(){
+		if($this->m_userdata->nisn($this->input->post('nisn'))){
+			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
+			</span> NISN Sudah Terdaftar</label>';
+		} else {
+			echo '<label class="text-success"><span class="glyphicon glyphicon-ok">
+			</span> NISN Tersedia</label>';	
+		}
+	}
+
+	public function cekEmail(){
+		if(!filter_var($this->input->post('email'), FILTER_VALIDATE_EMAIL)){
+			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
+			</span> Format Email Tidak Sesuai</label>';
+		} else {
+			if($this->m_userdata->email($this->input->post('email'))){
+				echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
+				</span> Email Sudah Terdaftar</label>';
+			} else {
+				echo '<small><label class="text-success"><span class="glyphicon glyphicon-ok">
+				</span> Email Tersedia</label></small>';	
+			}
+		}		
+	}
+
+	public function cekHp(){
+		if($this->m_userdata->hp($this->input->post('no_hp'))){
+			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
+			</span> No. HP Sudah Terdaftar</label>';
+		} else {
+			echo '<label class="text-success"><span class="glyphicon glyphicon-ok">
+			</span> No. HP Tersedia</label>';	
+		}
 	}
 
 }

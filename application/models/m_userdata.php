@@ -49,4 +49,34 @@ class m_userdata extends CI_model
 		$this->db->delete('tb_user');
 	}
 
+	public function nisn($nisn){
+		$this->db->where('nisn', $nisn);
+		$query = $this->db->get('tb_user');
+		if($query->num_rows() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function email($email){
+		$this->db->where('email', $email);
+		$query = $this->db->get('tb_user');
+		if($query->num_rows() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function hp($no_hp){
+		$this->db->where('no_hp', $no_hp);
+		$query = $this->db->get('tb_user');
+		if($query->num_rows() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

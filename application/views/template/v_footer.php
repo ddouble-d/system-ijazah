@@ -45,43 +45,7 @@
   <script src="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
 
   <!-- Flashdata -->
-  <script src="<?=base_url();?>assets/myscript.js"></script>
-
-  <!-- <script type="text/javascript">
-  $('#accordionSidebar').on('click', 'li', function(){
-    $('.active').removeClass('active'); // triggered on every event bubble :(
-      $(this).addClass('active'); // leaving only the main parent with active class
-    });
-    </script> -->
-
-
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $('.data').DataTable({
-      "order": [[ 0, "desc" ]]
-      // language: {
-      //   sProcessing: 'Sedang Proses...',
-      //   sLengthMenu: "Tampilan _MENU_ entri",
-      //   sZeroRecords: "Tidak ditemukan data yang sesuai",
-      //   sInfo: "Tampilan _START_ sampai _END_ dari _TOTAL_ entri",
-      //   sInfoEmpty: "Tampilan 0 sampai 0 dari 0 entri",
-      //   sInfoFiltered: "(disarin dari _MAX_ entri keseluruhan)",
-      //   sInfoPosstFix: "",
-      //   sSearch: "Cari:",
-      //   sUrl: "",
-      //   paginate: {
-      //     next: '→', //or '<i class="fas fa-chevron-right"></i>'
-      //     previous: '←' //'<i class="fas fa-chevron-left"></i>'
-      //   }
-      // }
-    });
-  
-  });
-  </script>
-
-
-
-
+  <script src="<?=base_url();?>assets/script.js"></script>
 </body>
 
 </html>

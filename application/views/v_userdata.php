@@ -57,7 +57,7 @@
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -71,9 +71,10 @@
         <div class="modal-body">
           <div class="form-group mb-3">
             <label class="col-form-label">NISN</label>
-            <input class="form-control" name="nisn" placeholder="Masukkan NISN" type="text" required=""
+            <input class="form-control" name="nisn" id="nisn" placeholder="Masukkan NISN" type="text" required=""
             oninvalid="this.setCustomValidity('NISN Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
+            <span id="cekNisn"></span>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Nama</label>
@@ -83,15 +84,17 @@
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">E-mail</label>
-            <input class="form-control" name="email" placeholder="Masukkan E-mail" type="email" required=""
+            <input class="form-control" name="email" id="email" placeholder="Masukkan E-mail" type="email" required=""
             oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')"
             oninput="setCustomValidity('')"></input>
+            <span id="cekEmail"></span>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">No. HP</label>
-            <input class="form-control" name="no_hp" placeholder="Masukkan No. HP" type="text" required=""
+            <input class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP" type="text" required=""
             oninvalid="this.setCustomValidity('No. HP Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
+            <span id="cekHp"></span>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Password</label>
@@ -195,6 +198,7 @@
   <!-- End of Modal Update -->
 <?php endforeach; ?>
 <script> 
+
 navUserData = document.getElementById('navUserData');
 navUserData.classList.add('active');
 </script>
