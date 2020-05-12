@@ -57,7 +57,7 @@
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -70,52 +70,59 @@
       <form action="<?=base_url('Userdata/tambah')?>" method="post" enctype="multipart/form-data" role="form">
         <div class="modal-body">
           <div class="form-group mb-3">
-            <label class="col-form-label">NISN</label>
+            <label class="col-form-label"><b>NISN</b></label>
             <input class="form-control" name="nisn" id="nisn" placeholder="Masukkan NISN" type="text" required=""
             oninvalid="this.setCustomValidity('NISN Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
             <span id="cekNisn"></span>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Nama</label>
+            <label class="col-form-label"><b>Nama</b></label>
             <input class="form-control" name="nama" placeholder="Masukkan Nama Lengkap" type="text" required=""
             oninvalid="this.setCustomValidity('Nama Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">E-mail</label>
+            <label class="col-form-label"><b>E-mail</b></label>
             <input class="form-control" name="email" id="email" placeholder="Masukkan E-mail" type="email" required=""
             oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')"
             oninput="setCustomValidity('')"></input>
             <span id="cekEmail"></span>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">No. HP</label>
+            <label class="col-form-label"><b>No. HP</b></label>
             <input class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP" type="text" required=""
             oninvalid="this.setCustomValidity('No. HP Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
             <span id="cekHp"></span>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Password</label>
-            <input class="form-control" name="password" placeholder="Masukkan Password" type="password" required=""
+            <label class="col-form-label"><b>Password</b></label>
+            <input class="form-control" name="password" id="password" placeholder="Masukkan Password" type="password" required=""
             oninvalid="this.setCustomValidity('Password Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Tahun Lulus</label>
+            <label class="col-form-label"><b>Konfirmasi Password</b></label>
+            <input class="form-control" name="password2" id="password2" placeholder="Masukkan Password" type="password" required=""
+            oninvalid="this.setCustomValidity('Password Belum Terisi!')"
+            oninput="setCustomValidity('')"></input>
+            <span id="cekPassword"></span>
+          </div>
+          <div class="form-group mb-3">
+            <label class="col-form-label"><b>Tahun Lulus</b></label>
             <input class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" type="text" required=""
             oninvalid="this.setCustomValidity('Tahun Lulus Belum Terisi!')"
             oninput="setCustomValidity('')"></input>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Alamat</label>
+            <label class="col-form-label"><b>Alamat</b></label>
             <textarea class="form-control" rows="5" name="alamat" placeholder="Masukkan Alamat" type="text" required=""
             oninvalid="this.setCustomValidity('Alamat Belum Terisi!')"
             oninput="setCustomValidity('')"></textarea>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Level</label>
+            <label class="col-form-label"><b>Level</b></label>
             <select class="custom-select" name="level">
               <option value="Admin">Admin</option>
               <option value="User">User</option>
@@ -198,7 +205,22 @@
   <!-- End of Modal Update -->
 <?php endforeach; ?>
 <script> 
-
 navUserData = document.getElementById('navUserData');
 navUserData.classList.add('active');
+
+const password = document.getElementById('password');
+const confirm_password = document.getElementById('password2');
+
+function konfirmasiPassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Password Tidak Sesuai!");
+    // document.getElementById('cekPassword').innerHTML="Password Tidak Sesuai!";
+  } else {
+    confirm_password.setCustomValidity('Password Sesuai');
+    // document.getElementById('cekPassword').innerHTML="Password Sesuai!";
+  }
+}
+
+password.onchange = konfirmasiPassword;
+confirm_password.onkeyup = konfirmasiPassword;
 </script>

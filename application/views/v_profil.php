@@ -120,7 +120,7 @@
   <!-- End of Modal Password -->
 <!-- <script>
 var password = document.getElementById("password")
-  , confirm_password = document.getElementById("confirm_password");
+  , confirm_password = document.getElementById("password2");
 
 function validatePassword(){
   if(password.value != confirm_password.value) {

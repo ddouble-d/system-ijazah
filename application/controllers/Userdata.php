@@ -65,36 +65,40 @@ class Userdata extends CI_Controller {
 
 	public function cekNisn(){
 		if($this->m_userdata->nisn($this->input->post('nisn'))){
-			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
-			</span> NISN Sudah Terdaftar</label>';
+			echo '<label class="text-danger">
+			NISN Sudah Terdaftar <span class="fa fa-times">
+			</span></label>';
 		} else {
-			echo '<label class="text-success"><span class="glyphicon glyphicon-ok">
-			</span> NISN Tersedia</label>';	
+			echo '<label class="text-success">
+			NISN Tersedia <span class="fa fa-check"></span></label>';	
 		}
 	}
 
 	public function cekEmail(){
 		if(!filter_var($this->input->post('email'), FILTER_VALIDATE_EMAIL)){
-			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
-			</span> Format Email Tidak Sesuai</label>';
+			echo '<label class="text-danger">
+			Format Email Tidak Sesuai <span class="fa fa-times">
+			</span></label></label>';
 		} else {
 			if($this->m_userdata->email($this->input->post('email'))){
-				echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
-				</span> Email Sudah Terdaftar</label>';
+				echo '<label class="text-danger">
+				Email Sudah Terdaftar <span class="fa fa-times">
+				</span></label></label>';
 			} else {
-				echo '<small><label class="text-success"><span class="glyphicon glyphicon-ok">
-				</span> Email Tersedia</label></small>';	
+				echo '<label class="text-success">
+				Email Tersedia <span class="fa fa-check"></span></label>';	
 			}
 		}		
 	}
-
+ 
 	public function cekHp(){
 		if($this->m_userdata->hp($this->input->post('no_hp'))){
-			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove">
-			</span> No. HP Sudah Terdaftar</label>';
+			echo '<label class="text-danger">
+			No. HP Sudah Terdaftar <span class="fa fa-times">
+			</span></label></label>';
 		} else {
-			echo '<label class="text-success"><span class="glyphicon glyphicon-ok">
-			</span> No. HP Tersedia</label>';	
+			echo '<label class="text-success">
+			No. HP Tersedia <span class="fa fa-check"></span></label>';	
 		}
 	}
 
