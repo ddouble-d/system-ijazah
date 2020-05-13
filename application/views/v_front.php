@@ -18,6 +18,9 @@
   <!-- Custom styles for this template-->
   <link href="<?=base_url()?>assets/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- SweetAlert2 -->
+  <link href="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.css" rel="stylesheet" />
+
 </head>
 
 <body class="bg-gradient-warning">
@@ -41,6 +44,7 @@
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                   </div>
                   <?= $this->session->flashdata('message'); ?>
+                  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
                    <form action="<?=base_url('Front/login')?>" method="post" enctype="multipart/form-data" role="form" class="user">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Masukkan Alamat E-mail">
@@ -52,7 +56,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="register.html">Bikin Akun Baru!</a>
+                    <a class="small" href="<?=base_url('register')?>">Bikin Akun Baru!</a>
                   </div>
                 </div>
               </div>

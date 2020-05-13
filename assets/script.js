@@ -59,6 +59,21 @@ $('#no_hp').change(function(){
     });
   }
 });
+
+$('#password2').change(function(){
+  var password = $('#password').val();
+  var password2 = $('#password2').val();
+  if(password2 != ''){
+    $.ajax({
+        url:"Userdata/cekPassword",
+        method:"POST",
+        data:{password:password, password2:password2},
+        success:function(data){
+          $('#cekPassword').html(data);
+        }
+    });
+  }
+});
   
   });
 
@@ -106,20 +121,20 @@ $('.tombol-hapus').on('click', function(e)
 });
 
 //konfirmasi form password
-const password = document.getElementById('password');
-const confirm_password = document.getElementById('password2');
+// const password = document.getElementById('password');
+// const confirm_password = document.getElementById('password2');
 
-function konfirmasiPassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Password Tidak Sesuai!");
-    // document.getElementById('cekPassword').innerHTML="Password Tidak Sesuai!";
-  } else {
-    confirm_password.setCustomValidity('Password Sesuai');
-    // document.getElementById('cekPassword').innerHTML="Password Sesuai!";
-  }
-}
+// function konfirmasiPassword(){
+//   if(password.value != confirm_password.value) {
+//     confirm_password.setCustomValidity("Password Tidak Sesuai!");
+//     // document.getElementById('cekPassword').innerHTML="Password Tidak Sesuai!";
+//   } else {
+//     confirm_password.setCustomValidity('Password Sesuai');
+//     // document.getElementById('cekPassword').innerHTML="Password Sesuai!";
+//   }
+// }
 
-password.onchange = konfirmasiPassword;
-confirm_password.onkeyup = konfirmasiPassword;
+// password.onchange = konfirmasiPassword;
+// confirm_password.onkeyup = konfirmasiPassword;
 
 

@@ -24,9 +24,12 @@ class Userdata extends CI_Controller {
 	}
   // 
 	public function tambah(){
-		$this->form_validation->set_rules('nisn','NISN','required|is_unique[tb_user.nisn]');
-		$this->form_validation->set_rules('email','Email','required|is_unique[tb_user.email]');
-		$this->form_validation->set_rules('no_hp','No HP','required|is_unique[tb_user.no_hp]');
+		$this->form_validation->set_rules('nisn', 'NISN', 'required|is_unique[tb_user.nisn]');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|is_unique[tb_user.email]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('no_hp', 'No HP', 'required|is_unique[tb_user.no_hp]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		if($this->form_validation->run()){
 			$data = [
 				'nisn' => $this->input->post('nisn',true),
@@ -35,7 +38,7 @@ class Userdata extends CI_Controller {
 				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 				'no_hp' => $this->input->post('no_hp',true),
 				'alamat' => $this->input->post('alamat',true),
-				'level' => $this->input->post('level',true)
+				'level' => "User"
 			];
 			$this->m_userdata->saveUserdata($data);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
@@ -99,6 +102,17 @@ class Userdata extends CI_Controller {
 		} else {
 			echo '<label class="text-success">
 			No. HP Tersedia <span class="fa fa-check"></span></label>';	
+		}
+	}
+
+	public function cekPassword(){
+		if($this->input->post('password2') != $this->input->post('password')){
+			echo '<label class="text-danger">
+			Password Tidak Sesuai <span class="fa fa-times">
+			</span></label></label>';
+		} else {
+			echo '<label class="text-success">
+			Password Sesuai <span class="fa fa-check"></span></label>';	
 		}
 	}
 
