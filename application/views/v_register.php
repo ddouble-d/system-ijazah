@@ -40,7 +40,8 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Pendaftaran Akun</h1>
-                                    </div>                                   
+                                    </div>
+                                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>                                   
                                     <div class="flash-gagal" data-flashgagal="<?= $this->session->flashdata('gagal') ?>"></div>
                                     <form action="<?= base_url('register/daftar') ?>" method="post" enctype="multipart/form-data" role="form" class="user">
 
@@ -81,7 +82,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('front') ?>">Ke Halaman Login</a>
+                                        <a class="small" href="<?= base_url() ?>">Ke Halaman Login</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +115,7 @@
   <script src="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
 
   <!-- Flashdata -->
-  <script src="<?=base_url();?>assets/script.js?2005131"></script>
+  <script src="<?=base_url();?>assets/script.js?200514"></script>
 
 </body>
 

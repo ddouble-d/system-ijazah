@@ -35,7 +35,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url()?>">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?=base_url()?>dashboard">
           <div class="sidebar-brand-icon rotate-n-15">
               <i class="fas fa-file-signature"></i>
           </div>
@@ -49,7 +49,7 @@
       <?php $info = $this->db->get_where('tb_user',['email'=>$this->session->userdata('email')])->row_array(); ?>
       <?php if($info['level'] == "Admin") { ?>
       <li class="nav-item " id="navDashboard">
-        <a class="nav-link" href="<?=base_url()?>">
+        <a class="nav-link" href="<?=base_url()?>dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -59,19 +59,19 @@
 
       <!-- Nav Item  -->
       <li class="nav-item " id="navUserData">
-        <a class="nav-link" href="<?=base_url()?>Userdata">
+        <a class="nav-link" href="<?=base_url()?>userdata">
           <i class="fas fa-fw fa-user"></i>
           <span>User Data</span></a>
       </li>
     <?php } ?>
       <li class="nav-item " id="navPengajuan">
-        <a class="nav-link" href="<?=base_url()?>Pengajuan">
+        <a class="nav-link" href="<?=base_url()?>pengajuan">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pengajuan</span></a>
       </li>
 <!-- < ?php } ?> -->
       <li class="nav-item " id="navProfil">
-        <a class="nav-link" href="<?=base_url()?>Profil">
+        <a class="nav-link" href="<?=base_url()?>profil">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Profil</span></a>
       </li>
@@ -81,7 +81,7 @@
  
       <!-- Logout -->
       <li class="nav-item">
-        <a class="nav-link" href="<?=base_url()?>Profil/Logout">
+        <a class="nav-link" href="<?=base_url()?>profil/logout">
           <i class="fas fa-fw fa-sign-out-alt"></i>
           <span>Logout</span></a>
       </li>
@@ -122,12 +122,12 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?=base_url()?>Profil">
+                <a class="dropdown-item" href="<?=base_url()?>profil">
                   <i class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profil
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?=base_url()?>Profil/Logout">
+                <a class="dropdown-item" href="<?=base_url()?>profil/logout">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

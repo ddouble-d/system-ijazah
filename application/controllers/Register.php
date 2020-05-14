@@ -35,7 +35,7 @@ class Register extends CI_Controller
                 'level' => "User"
             ];
             $this->m_userdata->saveUserdata($data);
-            $this->session->set_flashdata('flash', 'Ditambahkan');
+            $this->session->set_flashdata('flash', 'Didaftarkan');
             redirect('front');
         } else {
             $this->session->set_flashdata('gagal', 'Gagal');

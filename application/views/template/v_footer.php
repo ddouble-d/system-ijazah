@@ -45,7 +45,7 @@
   <script src="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
 
   <!-- Flashdata -->
-  <script src="<?=base_url();?>assets/script.js?2005131"></script>
+  <script src="<?=base_url();?>assets/script.js?200514"></script>
 </body>
 
 </html>

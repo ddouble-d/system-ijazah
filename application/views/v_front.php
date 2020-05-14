@@ -43,8 +43,8 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                   </div>
-                  <?= $this->session->flashdata('message'); ?>
-                  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+                  <!-- < ?= $this->session->flashdata('message'); ?> -->
+                  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div> 
                    <form action="<?=base_url('Front/login')?>" method="post" enctype="multipart/form-data" role="form" class="user">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Masukkan Alamat E-mail">
@@ -79,6 +79,11 @@
 
   <!-- Custom scripts for all pages-->
   <script src="<?=base_url()?>assets/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
+
+  <script src="<?=base_url()?>assets/script.js?200514"></script>
 
 </body>
 

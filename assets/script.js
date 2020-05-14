@@ -79,7 +79,6 @@ $('#password2').change(function(){
 
 const flashData = $('.flash-data').data('flashdata');
 const flashGagal = $('.flash-gagal').data('flashgagal');
-const flashLogin = $('.flash-login').data('flashlogin');
 
  
 if (flashData) {
@@ -114,27 +113,15 @@ $('.tombol-hapus').on('click', function(e)
     confirmButtonText: 'Hapus Data!'
   }).then((result) => {
     if (result.value) {
+      Swal.fire(
+        'Terhapus!',
+        'Data berhasil dihapus!',
+        'success'
+      )
       document.location.href = href;
     }
   })
 
 });
-
-//konfirmasi form password
-// const password = document.getElementById('password');
-// const confirm_password = document.getElementById('password2');
-
-// function konfirmasiPassword(){
-//   if(password.value != confirm_password.value) {
-//     confirm_password.setCustomValidity("Password Tidak Sesuai!");
-//     // document.getElementById('cekPassword').innerHTML="Password Tidak Sesuai!";
-//   } else {
-//     confirm_password.setCustomValidity('Password Sesuai');
-//     // document.getElementById('cekPassword').innerHTML="Password Sesuai!";
-//   }
-// }
-
-// password.onchange = konfirmasiPassword;
-// confirm_password.onkeyup = konfirmasiPassword;
 
 
