@@ -9,7 +9,7 @@ class Pengajuan extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_pengajuan');
 		$this->load->library('email');
-		// $this->load->library('form_validation', 'Pdf');
+		$this->load->library('form_validation');
 		// $this->load->helper(array('form', 'url'));
 		// is_admin();
 		is_loggedin();
@@ -66,6 +66,7 @@ class Pengajuan extends CI_Controller
 		$nisn = $this->input->post('nisn');
 		$nama = $this->input->post('nama');
 		$tanggal = date('YmdHis');
+		$this->form_validation->set_rules('scan_ijazah', 'Scan Ijazah', 'required');
 		$this->load->library('upload');
 		if (isset($_FILES['scan_ijazah']['name'])) {
 			$config['upload_path']    = './upload/scan_ijazah/';
@@ -77,18 +78,22 @@ class Pengajuan extends CI_Controller
 		$this->upload->initialize($config);
 		if (!$this->upload->do_upload('scan_ijazah')) {
 			$this->session->set_flashdata('gagal', 'Gagal');
-			redirect('Pengajuan');
+			redirect('pengajuan');
 		} else {
-			$namafile = $this->upload->data('file_name');
-			$data = [
-				'uid' => $this->session->userdata('uid'),
-				'scan_ijazah' => $namafile,
-				'log_pengajuan' => date('Y-m-d H:i:s'),
-				'status' => "Belum Diproses"
-			];
-			$this->m_pengajuan->savePengajuan($data);
-			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect('Pengajuan');
+			if ($this->form_validation->run()) {
+				$data = [
+					'uid' => $this->session->userdata('uid'),
+					'scan_ijazah' => $this->upload->data('file_name'),
+					'log_pengajuan' => date('Y-m-d H:i:s'),
+					'status' => "Belum Diproses"
+				];
+				$this->m_pengajuan->savePengajuan($data);
+				$this->session->set_flashdata('flash', 'Ditambahkan');
+				redirect('pengajuan');
+			} else {
+				$this->session->set_flashdata('gagal', 'Gagal');
+				redirect('pengajuan');
+			}
 		}
 	}
 
@@ -153,10 +158,10 @@ class Pengajuan extends CI_Controller
 			'status' => "Sudah Dikirim"
 		];
 		$this->m_pengajuan->updateStatus($id_pengajuan, $data);
-		$no_hp = $this->input->post('no_hp');
-		$resi = $this->input->post('no_resi');
-		$this->m_pengajuan->sendWhatsapp($no_hp, $resi);
+		// $no_hp = $this->input->post('no_hp');
+		// $resi = $this->input->post('no_resi');
+		// $this->m_pengajuan->sendWhatsapp($no_hp, $resi);
 		// $this->session->set_flashdata('flash', 'Diubah');
-		redirect('Pengajuan');
+		redirect('pengajuan');
 	}
 }

@@ -28,7 +28,7 @@
       <div class="table-responsive">
         <table class="table table-bordered data" id="tbpengajuan" width="100%" cellspacing="0">
           <thead>
-            <th>No.Pengajuan</th>
+            <th>No. Pengajuan</th>
             <th>NISN</th>
             <th>Nama</th>
             <th>Scan</th>
