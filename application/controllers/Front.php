@@ -4,11 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Front extends CI_Controller
 {
 
-  // public function __construct()
-  // {
-  // 	// parent::__construct();
-  // 	// is_loggedin();
-  // }
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->model('m_userdata');
+    $this->load->library('form_validation');
+    // is_loggedin();
+  }
 
   public function index()
   {
@@ -37,9 +39,9 @@ class Front extends CI_Controller
         ];
         $this->session->set_userdata($data);
         if ($cek['level'] == "Admin") {
-          redirect('Dashboard');
+          redirect('dashboard');
         } else {
-          redirect('Pengajuan');
+          redirect('pengajuan');
         }
       } else {
         $this->session->set_flashdata(
@@ -50,7 +52,7 @@ class Front extends CI_Controller
 				</button>
 				</div>'
         );
-        redirect('Front');
+        redirect(base_url());
       }
     } else {
       $this->session->set_flashdata(
@@ -61,7 +63,7 @@ class Front extends CI_Controller
       </button>
       </div>'
       );
-      redirect('Front');
+      redirect(base_url());
     }
   }
 }

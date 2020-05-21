@@ -19,7 +19,7 @@
     <link href="<?= base_url() ?>assets/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- SweetAlert2 -->
-    <link href="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.css" rel="stylesheet" />    
+    <link href="<?= base_url() ?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -41,7 +41,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Pendaftaran Akun</h1>
                                     </div>
-                                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>                                   
+                                    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
                                     <div class="flash-gagal" data-flashgagal="<?= $this->session->flashdata('gagal') ?>"></div>
                                     <form action="<?= base_url('register/daftar') ?>" method="post" enctype="multipart/form-data" role="form" class="user">
 
@@ -94,7 +94,7 @@
 
         </div>
 
-    </div> 
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url() ?>assets/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"></script>
@@ -105,17 +105,17 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url() ?>assets/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"></script>
-  
-  <!-- DataTables -->
-  <script src="<?=base_url()?>assets/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
-  <script src="<?=base_url()?>assets/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
-  <script src="<?=base_url()?>assets/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
-  <!-- SweetAlert2 -->
-  <script src="<?=base_url()?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
+    <!-- DataTables -->
+    <script src="<?= base_url() ?>assets/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
+    <script src="<?= base_url() ?>assets/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Flashdata -->
-  <script src="<?=base_url();?>assets/script.js?200514"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
+
+    <!-- Flashdata -->
+    <script src="<?= base_url(); ?>assets/script.js?200514"></script>
 
 </body>
 

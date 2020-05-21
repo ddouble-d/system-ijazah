@@ -32,34 +32,6 @@ class Pengajuan extends CI_Controller
 		$this->load->view('template/v_footer');
 	}
 
-	// public function tambahs()
-	// {
-	// 	date_default_timezone_set("Asia/Jakarta");
-	// 	$nisn = $this->input->post('nisn');
-	// 	$nama = $this->input->post('nama');
-	// 	$tanggal = date('Y-m-d H:i:s');
-	// 	$this->load->library('upload');
-	// 	if (isset($_FILES['scan_ijazah']['name'])) {
-	// 		$config['upload_path']    	= './upload/scan_ijazah/';
-	// 		$config['allowed_types']  	= 'pdf';
-	// 		$config['overwrite']		= true;
-	// 		$config['max_size']       	= 5120; // 5MB
-	// 		$config['file_name']		= $tanggal . '_' . $nisn . '' . $nama;
-	// 		$this->upload->initialize($config);
-	// 		$this->upload->do_upload('scan_ijazah');
-	// 		$namafile = $this->upload->data('file_name');
-	// 	}
-	// 	$data = [
-	// 		'uid' => $this->session->userdata('uid'),
-	// 		'scan_ijazah' => $namafile,
-	// 		'log_pengajuan' => $tanggal,
-	// 		'status' => "Belum Diproses"
-	// 	];
-	// 	$this->m_pengajuan->savePengajuan($data);
-	// 	// $this->session->set_flashdata('flash', 'Diubah');
-	// 	redirect('Pengajuan');
-	// }
-
 	public function tambah()
 	{
 		date_default_timezone_set("Asia/Jakarta");
