@@ -38,7 +38,7 @@ class Pengajuan extends CI_Controller
 		$nisn = $this->input->post('nisn');
 		$nama = $this->input->post('nama');
 		$tanggal = date('YmdHis');
-		$this->form_validation->set_rules('scan_ijazah', 'Scan Ijazah', 'required');
+		// $this->form_validation->set_rules('scan_ijazah', 'Scan Ijazah', 'required');
 		$this->load->library('upload');
 		if (isset($_FILES['scan_ijazah']['name'])) {
 			$config['upload_path']    = './upload/scan_ijazah/';
@@ -52,55 +52,47 @@ class Pengajuan extends CI_Controller
 			$this->session->set_flashdata('gagal', 'Gagal');
 			redirect('pengajuan');
 		} else {
-			if ($this->form_validation->run()) {
-				$data = [
-					'uid' => $this->session->userdata('uid'),
-					'scan_ijazah' => $this->upload->data('file_name'),
-					'log_pengajuan' => date('Y-m-d H:i:s'),
-					'status' => "Belum Diproses"
-				];
-				$this->m_pengajuan->savePengajuan($data);
-				$this->session->set_flashdata('flash', 'Ditambahkan');
-				redirect('pengajuan');
-			} else {
-				$this->session->set_flashdata('gagal', 'Gagal');
-				redirect('pengajuan');
-			}
+			// if ($this->form_validation->run()) {
+			$data = [
+				'uid' => $this->session->userdata('uid'),
+				'scan_ijazah' => $this->upload->data('file_name'),
+				'log_pengajuan' => date('Y-m-d H:i:s'),
+				'status' => "Belum Diproses"
+			];
+			$this->m_pengajuan->savePengajuan($data);
+			$this->session->set_flashdata('flash', 'Ditambahkan');
+			redirect('pengajuan');
+			// } else {
+			// 	$this->session->set_flashdata('gagal', 'Gagal');
+			// 	redirect('pengajuan');
+			// }
 		}
 	}
 
-	public function notifikasiEmail()
+	public function prosesStatus()
 	{
-		// $config = [
-		// 	'protocol' => 'smtp',
-		// 	'smtp_crypto' => 'ssl',
-		// 	'smtp_host' => 'smtp.gmail.com',
-		// 	'smtp_port' => 465,
-		// 	'smtp_user' => 'legalisirijazah48@gmail.com',
-		// 	'smtp_pass' => 'yupihime',
-		// 	'mailtype' => 'html',
-		// 	'charset' => 'utf-8',
-		// 	'crlf'    => "\r\n",
-		//   'newline' => "\r\n"
-		// ];
-		// $this->load->library('email', $config);
-		// $this->email->from('legalisirijazah48@gmail.com','SMA X');
-		// $this->email->to('adeth.slipz@gmail.com');
-		// $this->email->subject('Legalisir Ijazah');
-		// $this->email->message('tes');
-		// return $this->email->send();
-
-		$to_email = "legalisirijazah48@gmail.com";
-		$subject = "Simple Email Test via PHP";
-		$body = "Hi,nn This is test email send by PHP Script";
-
-		if (mail($to_email, $subject, $body)) {
-			echo "Email successfully sent to $to_email...";
+		date_default_timezone_set("Asia/Jakarta");
+		$this->form_validation->set_rules('no_resi', 'No. Resi', 'required');
+		$id_pengajuan = $this->input->post('id_pengajuan');
+		$email = $this->input->post('email');
+		$resi = $this->input->post('no_resi');
+		if ($this->form_validation->run()) {
+			$data = [
+				'log_kirim' => date('Y-m-d H:i:s'),
+				'no_resi' => $resi,
+				'keterangan' => $this->input->post('keterangan', true),
+				'status' => "Sudah Dikirim"
+			];
+			$this->m_pengajuan->updateStatus($id_pengajuan, $data);
+			// $no_hp = $this->input->post('no_hp');		
+			// $this->m_pengajuan->sendEmail($email, $resi);
+			$this->session->set_flashdata('flash', 'Diproses');
+			redirect('pengajuan');
 		} else {
-			echo "Email sending failed...";
+			$this->session->set_flashdata('gagal', 'Gagal');
+			redirect('pengajuan');
 		}
 	}
-
 
 	// public function edit(){
 	// 	$uid = $this->input->post('uid');
@@ -119,21 +111,5 @@ class Pengajuan extends CI_Controller
 	// 	redirect('Userdata');
 	// }
 
-	public function prosesStatus()
-	{
-		date_default_timezone_set("Asia/Jakarta");
-		$id_pengajuan = $this->input->post('id_pengajuan');
-		$data = [
-			'log_kirim' => date('Y-m-d H:i:s'),
-			'no_resi' => $this->input->post('no_resi', true),
-			'keterangan' => $this->input->post('keterangan', true),
-			'status' => "Sudah Dikirim"
-		];
-		$this->m_pengajuan->updateStatus($id_pengajuan, $data);
-		// $no_hp = $this->input->post('no_hp');
-		// $resi = $this->input->post('no_resi');
-		// $this->m_pengajuan->sendWhatsapp($no_hp, $resi);
-		// $this->session->set_flashdata('flash', 'Diubah');
-		redirect('pengajuan');
-	}
+
 }

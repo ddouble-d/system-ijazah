@@ -10,15 +10,11 @@ class Profil extends CI_Controller
 		$this->load->model('m_userdata');
 		$this->load->library('form_validation');
 		// $this->load->helper(array('form', 'url'));
-		// is_admin();
 		is_loggedin();
 	}
 
 	public function index()
 	{
-		// $data['active1'] = "";
-		// $data['active2'] = "nav-item active";
-		// $data['active3'] = "";
 		$this->load->view('template/v_header');
 		$this->load->view('v_profil');
 		$this->load->view('template/v_footer');

@@ -33,7 +33,10 @@ class Front extends CI_Controller
     if ($cek) {
       if (password_verify($password, $cek['password'])) {
         $data = [
+          'nama' => $cek['nama'],
           'email' => $cek['email'],
+          'nisn' => $cek['nisn'],
+          'alamat' => $cek['alamat'],
           'level' => $cek['level'],
           'uid' => $cek['uid']
         ];

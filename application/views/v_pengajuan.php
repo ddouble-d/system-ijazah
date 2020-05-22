@@ -93,15 +93,15 @@
         <div class="modal-body">
           <div class="form-group mb-3">
             <label class="col-form-label">NISN</label>
-            <input class="form-control" id="nisn" name="nisn" type="text" required="" value="<?= $data['nisn'] ?>" readonly></input>
+            <input class="form-control" id="nisn" name="nisn" type="text" required="" value="<?= $info['nisn'] ?>" readonly></input>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Nama</label>
-            <input class="form-control" id="nama" name="nama" type="text" required="" value="<?= $data['nama'] ?>" readonly></input>
+            <input class="form-control" id="nama" name="nama" type="text" required="" value="<?= $info['nama'] ?>" readonly></input>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Alamat</label>
-            <input class="form-control" id="alamat" name="alamat" type="text" required="" value="<?= $data['alamat'] ?>" readonly></input>
+            <input class="form-control" id="alamat" name="alamat" type="text" required="" value="<?= $info['alamat'] ?>" readonly></input>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Scan Ijazah</label>
@@ -147,6 +147,10 @@ foreach ($userdata as $data) : $no++; ?>
             <div class="form-group mb-3">
               <label class="col-form-label">Nama</label>
               <input class="form-control" id="nama" name="nama" type="text" required="" value="<?= $data['nama'] ?>" readonly></input>
+            </div>
+            <div class="form-group mb-3">
+              <label class="col-form-label">Email</label>
+              <input class="form-control" id="email" name="email" type="text" required="" value="<?= $data['email'] ?>" readonly></input>
             </div>
             <div class="form-group mb-3">
               <label class="col-form-label">No. HP</label>
