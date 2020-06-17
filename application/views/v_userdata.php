@@ -17,7 +17,7 @@
             <th width="5%">#</th>
             <th>NISN</th>
             <th>Nama</th>
-            <th>Level</th>
+            <th>Status</th>
             <th width="15%">Aksi</th>
           </thead>
           <tbody>
@@ -28,10 +28,10 @@
                 <td><?= $no++ ?></td>
                 <td><?= $data['nisn'] ?></td>
                 <td><?= $data['nama'] ?></td>
-                <?php if ($data['level'] == "Admin") { ?>
-                  <td><span class="bade badge-pill badge-success"><b><?= $data['level'] ?></b></span></td>
+                <?php if ($data['aktif'] == 1) { ?>
+                  <td>Terdaftar</td>
                 <?php } else { ?>
-                  <td><span class="bade badge-pill badge-light"><b><?= $data['level'] ?></b></span></td>
+                  <td>Belum Terdaftar</td>
                 <?php } ?>
                 <td>
                   <button type="button" data-toggle="modal" data-target="#edit-data<?= $data['uid'] ?>" class="btn btn-warning btn-fill">
@@ -66,58 +66,18 @@
         </button>
       </div>
 
-      <form action="<?= base_url('Userdata/tambah') ?>" method="post" enctype="multipart/form-data" role="form">
+      <form action="<?= base_url('userdata/tambah') ?>" method="post" enctype="multipart/form-data" role="form">
         <div class="modal-body">
           <div class="form-group mb-3">
             <label class="col-form-label"><b>NISN</b></label>
-            <input class="form-control" name="nisn" id="nisn" placeholder="Masukkan NISN" type="number" required="" oninvalid="this.setCustomValidity('NISN Belum Terisi!')" oninput="setCustomValidity('')"></input>
+            <input class="form-control " name="nisn" id="nisn" type="number" placeholder="Masukkan NISN" required=""></input>
             <span id="cekNisn"></span>
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label"><b>Nama</b></label>
             <input class="form-control" name="nama" placeholder="Masukkan Nama Lengkap" type="text" required="" oninvalid="this.setCustomValidity('Nama Belum Terisi!')" oninput="setCustomValidity('')"></input>
           </div>
-          <div class="form-group mb-3">
-            <label class="col-form-label"><b>E-mail</b></label>
-            <input class="form-control" name="email" id="email" placeholder="Masukkan E-mail" type="email" required="" oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')" oninput="setCustomValidity('')"></input>
-            <span id="cekEmail"></span>
-          </div>
-          <div class="form-group mb-3">
-            <label class="col-form-label"><b>No. HP</b></label>
-            <div class="input-group-prepend">
-              <div class="input-group-text">+62</div>
-              <input class="form-control" name="no_hp" id="no_hp" placeholder="Masukkan No. HP" type="number" required="" oninvalid="this.setCustomValidity('No. HP Belum Terisi!')" oninput="setCustomValidity('')"></input>
-            </div>
-          </div>
-          <span id="cekHp"></span>
-          <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <label class="col-form-label"><b>Password</b></label>
-              <input class="form-control " name="password" id="password" placeholder="Masukkan Password" type="password" required="" oninvalid="this.setCustomValidity('Password Belum Terisi!')" oninput="setCustomValidity('')"></input>
-            </div>
-            <div class="col-sm-6">
-              <label class="col-form-label"><b>Konfirmasi Password</b></label>
-              <input class="form-control " name="password2" id="password2" placeholder="Konfirmasi Password" type="password" required="" oninvalid="this.setCustomValidity('Password Belum Terisi!')" oninput="setCustomValidity('')"></input>
-            </div>
-          </div>
-          <span id="cekPassword"></span>
-          <div class="form-group mb-3">
-            <label class="col-form-label"><b>Tahun Lulus</b></label>
-            <input class="form-control" name="tahun_lulus" placeholder="Masukkan Tahun Lulus" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" required=""></input>
-          </div>
-          <div class="form-group mb-3">
-            <label class="col-form-label"><b>Alamat</b></label>
-            <textarea class="form-control" rows="5" name="alamat" placeholder="Masukkan Alamat" type="text" required="" oninvalid="this.setCustomValidity('Alamat Belum Terisi!')" oninput="setCustomValidity('')"></textarea>
-          </div>
-          <div class="form-group mb-3">
-            <label class="col-form-label"><b>Level</b></label>
-            <select class="custom-select" name="level">
-              <option value="Admin">Admin</option>
-              <option value="User">User</option>
-            </select>
-          </div>
         </div>
-
         <div class="modal-footer">
           <button type="submit" id="simpan" class="btn btn-primary btn-fill">Simpan</button>
           <button type="button" class="btn ml-auto btn-fill" data-dismiss="modal">Tutup</button>
@@ -128,10 +88,10 @@
 </div>
 <!-- End of Modal Tambah -->
 
-<?php $no = 0;
-foreach ($userdata as $data) : $no++; ?>
-  <!-- Modal Update -->
-  <div class="modal fade" id="edit-data<?= $data['uid'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+<!-- < ?php $no = 0;
+foreach ($userdata as $data) : $no++; ?> -->
+<!-- Modal Update -->
+<!-- <div class="modal fade" id="edit-data<?= $data['uid'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
@@ -180,9 +140,9 @@ foreach ($userdata as $data) : $no++; ?>
         </form>
       </div>
     </div>
-  </div>
-  <!-- End of Modal Update -->
-<?php endforeach; ?>
+  </div> -->
+<!-- End of Modal Update -->
+<!-- < ?php endforeach; ?> -->
 <script>
   navUserData = document.getElementById('navUserData');
   navUserData.classList.add('active');

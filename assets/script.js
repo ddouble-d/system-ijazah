@@ -19,10 +19,10 @@ $(document).ready(function () {
 	});
 
 	$("#nisn").change(function () {
-		var nisn = $("#nisn").val();
+		const nisn = $("#nisn").val();
 		if (nisn != "") {
 			$.ajax({
-				url: "register/cekNisn",
+				url: "front/cekNisn",
 				method: "POST",
 				data: { nisn: nisn },
 				success: function (data) {
@@ -33,10 +33,10 @@ $(document).ready(function () {
 	});
 
 	$("#email").change(function () {
-		var email = $("#email").val();
+		const email = $("#email").val();
 		if (email != "") {
 			$.ajax({
-				url: "register/cekEmail",
+				url: "front/cekEmail",
 				method: "POST",
 				data: { email: email },
 				success: function (data) {
@@ -47,10 +47,10 @@ $(document).ready(function () {
 	});
 
 	$("#no_hp").change(function () {
-		var no_hp = $("#no_hp").val();
+		const no_hp = $("#no_hp").val();
 		if (no_hp != "") {
 			$.ajax({
-				url: "register/cekHp",
+				url: "front/cekHp",
 				method: "POST",
 				data: { no_hp: no_hp },
 				success: function (data) {
@@ -60,19 +60,25 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#password2").change(function () {
-		var password = $("#password").val();
-		var password2 = $("#password2").val();
-		if (password2 != "") {
-			$.ajax({
-				url: "register/cekPassword",
-				method: "POST",
-				data: { password: password, password2: password2 },
-				success: function (data) {
-					$("#cekPassword").html(data);
-				},
-			});
-		}
+	$('[data-toggle="password"]').each(function () {
+		const input = $(this);
+		const eye_btn = $(this).parent().find(".input-group-text");
+		eye_btn.css("cursor", "pointer").addClass("input-password-hide");
+		eye_btn.on("click", function () {
+			if (eye_btn.hasClass("input-password-hide")) {
+				eye_btn
+					.removeClass("input-password-hide")
+					.addClass("input-password-show");
+				eye_btn.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash");
+				input.attr("type", "text");
+			} else {
+				eye_btn
+					.removeClass("input-password-show")
+					.addClass("input-password-hide");
+				eye_btn.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye");
+				input.attr("type", "password");
+			}
+		});
 	});
 });
 

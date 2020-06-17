@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-warning">
+<body class="bg-gradient-primary">
 
     <div class="container">
 
@@ -44,45 +44,50 @@
                                     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
                                     <div class="flash-gagal" data-flashgagal="<?= $this->session->flashdata('gagal') ?>"></div>
                                     <form action="<?= base_url('register/daftar') ?>" method="post" enctype="multipart/form-data" role="form" class="user">
-
                                         <div class="form-group">
-                                            <input class="form-control " name="nisn" id="nisn" placeholder="Masukkan NISN" type="number" required="" oninvalid="this.setCustomValidity('NISN Belum Terisi!')" oninput="setCustomValidity('')"></input>
+                                            <input class="form-control " name="nisn" id="nisn" type="number" required="" value="<?= $this->session->userdata('nisn') ?>" disabled></input>
                                             <span id="cekNisn"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control " name="nama" placeholder="Masukkan Nama Lengkap" type="text" required="" oninvalid="this.setCustomValidity('Nama Belum Terisi!')" oninput="setCustomValidity('')"></input>
+                                            <input class="form-control " name="nama" id="nama" type="text" required="" value="<?= $this->session->userdata('nama') ?>" disabled></input>
                                         </div>
-                                        <div class="form-group">
-                                            <input class="form-control " name="email" id="email" placeholder="Masukkan E-mail" type="email" required="" oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')" oninput="setCustomValidity('')"></input>
-                                            <span id="cekEmail"></span>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <input class="form-control " name="email" id="email" placeholder="Masukkan E-mail" type="email" required="" oninvalid="this.setCustomValidity('Perhatikan Kolom E-mail!')" oninput="setCustomValidity('')"></input>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="input-group">
+                                                    <input class="form-control" data-toggle="password" name="password" id="password" placeholder="Masukkan Password" type="password" required="" oninvalid="this.setCustomValidity('Password Belum Terisi!')" oninput="setCustomValidity('')">
+                                                    </input>
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text"><i class="fa fa-eye"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">+62</div>
+                                        <span id="cekEmail"></span>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
                                                 <input class="form-control " name="no_hp" id="no_hp" placeholder="Masukkan No. HP" type="number" required="" oninvalid="this.setCustomValidity('No. HP Belum Terisi!')" oninput="setCustomValidity('')"></input>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input class="form-control " name="tahun_lulus" id="tahun_lulus" placeholder="Masukkan Tahun Lulus" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" required=""></input>
                                             </div>
                                         </div>
                                         <span id="cekHp"></span>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6">
-                                                <input class="form-control " name="password" id="password" placeholder="Masukkan Password" type="password" required="" oninvalid="this.setCustomValidity('Password Belum Terisi!')" oninput="setCustomValidity('')"></input>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input class="form-control " name="password2" id="password2" placeholder="Konfirmasi Password" type="password" required="" oninvalid="this.setCustomValidity('Password Belum Terisi!')" oninput="setCustomValidity('')"></input>
-                                            </div>
-                                        </div>
-                                        <span id="cekPassword"></span>
-                                        <div class="form-group">
-                                            <input class="form-control " name="tahun_lulus" placeholder="Masukkan Tahun Lulus" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="4" required=""></input>
-                                        </div>
                                         <div class="form-group">
                                             <textarea class="form-control " rows="5" name="alamat" placeholder="Masukkan Alamat" type="text" required="" oninvalid="this.setCustomValidity('Alamat Belum Terisi!')" oninput="setCustomValidity('')"></textarea>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input class="custom-file-input" id="scan_ijazah" name="scan_ijazah" type="file" required="">
+                                            <label class="custom-file-label" for="scan_ijazah">File Scan Ijazah</label>
+                                            <label class="text-danger"><small>Pastikan file dalam format .pdf & Ukuran file max 5MB</small></label>
                                         </div>
                                         <button type="submit" class="btn btn-info btn-user btn-block">Daftar</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url() ?>">Ke Halaman Login</a>
+                                        <a class="small" href="<?= base_url('register/reset') ?>">Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +120,7 @@
     <script src="<?= base_url() ?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.js"></script>
 
     <!-- Flashdata -->
-    <script src="<?= base_url(); ?>assets/script.js?200514"></script>
+    <script src="<?= base_url(); ?>assets/script.js"></script>
 
 </body>
 

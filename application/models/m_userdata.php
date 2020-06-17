@@ -4,6 +4,7 @@ class M_userdata extends CI_model
 
 	public function getAllUser()
 	{
+		$this->db->where('level', "User");
 		return $this->db->get('tb_user')->result_array();
 	}
 
@@ -12,10 +13,10 @@ class M_userdata extends CI_model
 		return $this->db->where('uid', $uid);
 	}
 
-	public function saveUserdata($data)
-	{
-		$this->db->insert('tb_user', $data);
-	}
+	// public function saveUserdata($data)
+	// {
+	// 	$this->db->insert('tb_user', $data);
+	// }
 
 	public function updateUserdata($data, $uid)
 	{

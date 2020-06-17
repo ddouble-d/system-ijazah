@@ -28,34 +28,40 @@
       <div class="table-responsive">
         <table class="table table-bordered data" id="tbpengajuan" width="100%" cellspacing="0">
           <thead>
-            <th>No. Pengajuan</th>
-            <th>NISN</th>
+            <th>No.</th>
             <th>Nama</th>
             <th>Scan</th>
-            <th>Tanggal Pengajuan</th>
+            <th>Waktu Pengajuan</th>
+            <th>Waktu Pengiriman</th>
             <th>No. Resi</th>
             <th>Keterangan</th>
             <th>Status</th>
-            <?php if ($info['level'] == "Admin") { ?>
-              <th>Aksi</th>
-            <?php } ?>
+            <th>Aksi</th>
           </thead>
           <tbody>
             <?php foreach ($userdata as $data) : ?>
               <tr>
                 <td><?= $data['id_pengajuan'] ?></td>
-                <td><?= $data['nisn'] ?></td>
                 <td><?= $data['nama'] ?></td>
-                <td><a href=<?php echo '"' . base_url('upload/scan_ijazah/' . $data['scan_ijazah']) . '"'; ?>>
-                    <img width="50" height="50" src="<?php echo base_url('assets/startbootstrap-sb-admin-2-gh-pages/img/pdf.png') ?>" alt=""></a></td>
+                <td><a href=<?= '"' . base_url('upload/scan_ijazah/' . $data['upload_ijazah']) . '"'; ?>>
+                    <img width="50" height="50" src="<?= base_url('assets/startbootstrap-sb-admin-2-gh-pages/img/pdf.png') ?>" alt=""></a></td>
                 <td><?= $data['log_pengajuan'] ?></td>
-                <td><?= $data['no_resi'] ?></td>
+                <?php if ($data['log_kirim'] == NULL) { ?>
+                  <td>-</td>
+                <?php } else { ?>
+                  <td><?= $data['log_kirim'] ?></td>
+                <?php } ?>
+                <?php if ($data['no_resi'] == NULL) { ?>
+                  <td>-</td>
+                <?php } else { ?>
+                  <td><?= $data['no_resi'] ?></td>
+                <?php } ?>
                 <td><?= $data['keterangan'] ?></td>
                 <td><?= $data['status'] ?></td>
-                <?php if ($info['level'] == "Admin") { ?>
-                  <td>
-                    <?php if ($data['status'] == "Sudah Dikirim") { ?>
-                      <button type="button" data-toggle="modal" data-target="#edit-data<?= $data['id_pengajuan'] ?>" class="btn btn-warning btn-fill btn-sm" disabled>
+                <td>
+                  <?php if ($info['level'] == "Admin") {
+                    if ($data['status'] == "Sudah Dikirim") { ?>
+                      <button type="button" class="btn btn-warning btn-fill btn-sm" disabled>
                         Proses
                       </button>
                     <?php }
@@ -63,9 +69,19 @@
                       <span data-toggle="modal" data-target="#edit-data<?= $data['id_pengajuan'] ?>" class="btn btn-warning btn-fill btn-sm">
                         Proses
                       </span>
-                    <?php } ?>
-                  </td>
-                <?php } ?>
+                    <?php }
+                  } else {
+                    if ($data['status'] == "Belum Diproses") { ?>
+                      <a href="<?= base_url('pengajuan/hapus/' . $data['id_pengajuan']); ?>" class="btn btn-danger btn-fill btn-sm tombol-hapus">Hapus
+                      </a>
+                    <?php }
+                    if ($data['status'] == "Sudah Dikirim") { ?>
+                      <button type="button" class="btn btn-danger btn-fill btn-sm" disabled>
+                        Hapus
+                      </button>
+                  <?php }
+                  } ?>
+                </td>
               </tr>
             <?php endforeach ?>
           </tbody>
@@ -89,7 +105,7 @@
         </button>
       </div>
 
-      <form action="<?= base_url('Pengajuan/tambah') ?>" method="post" enctype="multipart/form-data" role="form">
+      <form action="<?= base_url('pengajuan/tambah') ?>" method="post" enctype="multipart/form-data" role="form">
         <div class="modal-body">
           <div class="form-group mb-3">
             <label class="col-form-label">NISN</label>
@@ -101,16 +117,16 @@
           </div>
           <div class="form-group mb-3">
             <label class="col-form-label">Alamat</label>
-            <input class="form-control" id="alamat" name="alamat" type="text" required="" value="<?= $info['alamat'] ?>" readonly></input>
+            <textarea class="form-control" rows="5" id="alamat" name="alamat" type="text" required="" oninvalid="this.setCustomValidity('Alamat Belum Terisi!')" oninput="setCustomValidity('')" readonly><?= $info['alamat'] ?></textarea>
           </div>
           <div class="form-group mb-3">
-            <label class="col-form-label">Scan Ijazah</label>
-            <input class="form-control-file" id="scan_ijazah" name="scan_ijazah" type="file" required="">
+            <label class="col-form-label">Keterangan</label>
+            <input class="form-control" id="keterangan" name="keterangan" type="text" placeholder="Masukkan Keterangan" required=""></input>
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="submit" id="simpan" class="btn btn-primary btn-fill">Simpan</button>
+          <button type="submit" id="simpan" class="btn btn-primary btn-fill">Kirim</button>
           <button type="button" class="btn ml-auto btn-fill" data-dismiss="modal">Tutup</button>
         </div>
       </form>
@@ -162,7 +178,7 @@ foreach ($userdata as $data) : $no++; ?>
             </div>
             <div class="form-group mb-3">
               <label class="col-form-label">Keterangan</label>
-              <input class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Keterangan" type="text" required="" oninvalid="this.setCustomValidity('Keterangan Belum Terisi!')" oninput="setCustomValidity('')"></input>
+              <input class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Keterangan" type="text" value="<?= $data['keterangan'] ?>"></input>
             </div>
 
 

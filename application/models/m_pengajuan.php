@@ -85,6 +85,12 @@ class M_pengajuan extends CI_model
 		$this->db->insert('tb_pengajuan', $data);
 	}
 
+	public function deletePengajuan($id_pengajuan)
+	{
+		$this->db->where('id_pengajuan', $id_pengajuan);
+		$this->db->delete('tb_pengajuan');
+	}
+
 	public function updateStatus($id_pengajuan, $data)
 	{
 		$this->db->where('id_pengajuan', $id_pengajuan);

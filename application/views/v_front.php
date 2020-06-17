@@ -16,14 +16,21 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="<?= base_url() ?>assets/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>assets/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.css" rel="stylesheet">
 
   <!-- SweetAlert2 -->
   <link href="<?= base_url() ?>assets/sweetalert2-8.18.5/package/dist/sweetalert2.min.css" rel="stylesheet" />
+  <style>
+    .bg-login-images {
+      background: url("https://i.imgur.com/qV1DlsJ.png");
+      background-position: center;
+      background-size: 500px 430px;
+    }
+  </style>
 
 </head>
 
-<body class="bg-gradient-warning">
+<body class="bg-gradient-primary">
 
   <div class="container">
 
@@ -34,28 +41,31 @@
 
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+            <div class="flash-gagal" data-flashgagal="<?= $this->session->flashdata('gagal') ?>"></div>
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image">
+              <div class="col-lg-6 d-none d-lg-block bg-login-images">
+                <!-- <h1 class="col-lg-6 col-xl-15">asd</h1> -->
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
+                    <img src="<?= base_url() ?>assets/logo smk swagaya1.png" width="70px" height="80px""><h1 class=" h4 text-gray-900 mb-4">Selamat Datang di <br>SMK Swagaya 1 Purwokerto</h1>
                   </div>
                   <?= $this->session->flashdata('message'); ?>
-                  <form action="<?= base_url('front/login') ?>" method="post" enctype="multipart/form-data" role="form" class="user">
+                  <form action="<?= base_url('front/konfirmasiNISN') ?>" method="post" enctype="multipart/form-data" role="form" class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Masukkan Alamat E-mail">
+                      <input type="number" class="form-control form-control-user" name="nisn" id="nisn" placeholder="Masukkan NISN" required>
                     </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password" placeholder="Masukkan Password">
-                    </div>
-                    <button type="submit" class="btn btn-info btn-user btn-block">Masuk</button>
+                    <!-- <div class="form-group">
+                      <input type="password" class="form-control form-control-user" name="password" placeholder="Masukkan Password" required>
+                    </div> -->
+                    <button type="submit" class="btn btn-info btn-user btn-block">Cek</button>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="<?= base_url('register') ?>">Bikin Akun Baru!</a>
+                    <a class="small" href="<?= base_url('front/loginAdmin') ?>">Login Admin</a>
                   </div>
                 </div>
               </div>

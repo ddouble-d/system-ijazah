@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller
 	}
 	public function index()
 	{
-		$data['user']    	= $this->db->query("SELECT uid FROM tb_user");
+		$data['user']    	= $this->db->query("SELECT uid FROM tb_user WHERE level = 'User'");
 		$data['pengajuan_all'] = $this->db->query("SELECT id_pengajuan FROM tb_pengajuan");
 		$data['pengajuan_belum'] = $this->db->query("SELECT id_pengajuan FROM tb_pengajuan WHERE status = 'Belum Diproses'");
 		$data['pengajuan_sudah'] = $this->db->query("SELECT id_pengajuan FROM tb_pengajuan WHERE status = 'Sudah Dikirim'");
