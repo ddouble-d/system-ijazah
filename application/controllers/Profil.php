@@ -9,7 +9,6 @@ class Profil extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_userdata');
 		$this->load->library('form_validation');
-		// $this->load->helper(array('form', 'url'));
 		is_loggedin();
 	}
 

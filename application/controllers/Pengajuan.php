@@ -10,7 +10,6 @@ class Pengajuan extends CI_Controller
 		$this->load->model('m_pengajuan');
 		$this->load->library('email');
 		$this->load->library('form_validation');
-		// $this->load->helper(array('form', 'url'));
 		// is_admin();
 		is_loggedin();
 	}

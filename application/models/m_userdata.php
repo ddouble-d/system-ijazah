@@ -13,10 +13,10 @@ class M_userdata extends CI_model
 		return $this->db->where('uid', $uid);
 	}
 
-	// public function saveUserdata($data)
-	// {
-	// 	$this->db->insert('tb_user', $data);
-	// }
+	public function saveUserdata($data)
+	{
+		$this->db->insert('tb_user', $data);
+	}
 
 	public function updateUserdata($data, $uid)
 	{
